@@ -1,17 +1,17 @@
-import {Router} from 'express'
+import { Router } from "express";
 
-const router=Router();
+const router = Router();
 
-router.get('/maestro')
+router.get("/maestro");
 
-router.get('/maestro/count')
+router.get("/maestro/count");
 
-router.get('/maestro/:id')
+router.get("/maestro/:id");
 
-router.post('/maestro')
+router.post("/maestro");
 
-router.put('/maestro/:id')
+router.put("/maestro/:id");
 
-router.delete('/maestro/:id')
+router.delete("/maestro/:id");
 
-export default router
+export default router;
