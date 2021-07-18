@@ -16,7 +16,7 @@ export const iniciarSesion = async (req, res) => {
   if (!comparePassword) {
     res.status(400).json({ error: "invalid password" });
   } else {
-    console.log(rows[0].password);
+    //console.log(rows[0].password);
     res.json(rows);
   }
 };
