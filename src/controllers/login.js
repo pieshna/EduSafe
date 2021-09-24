@@ -16,8 +16,15 @@ export const iniciarSesion = async (req, res) => {
   if (!comparePassword) {
     res.status(400).json({ error: "invalid password" });
   } else {
+    const datos= {
+      "nombre": rows[0].nombre,
+      "apellido" : rows[0].apellido,
+      "correo" : rows[0].correo,
+      "username" : rows[0].username,
+      "foto": rows[0].foto,
+    }
     //console.log(rows[0].password);
-    res.json(rows);
+    res.json(datos);
   }
 };
 
