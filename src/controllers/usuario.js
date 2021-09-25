@@ -1,4 +1,3 @@
-import { connect } from "../database";
 const bcrypt = require("bcrypt");
 //importamos la clase persona
 import {consultarPersonaById,buscarPersonaPorRol,crearPersona,actualizarEstado,actualizarPersona} from "./persona"
@@ -24,7 +23,7 @@ export const consultarByRol = async (req, res) => {
 
 //Ingresar usuario
 export const ingresarUsuario = async (req, res) => {
-  await crearPersona(req,res)
+  await crearPersona(req,res,1)
 };
 
 //en ves de eliminar cambiamos el estado a inactivo

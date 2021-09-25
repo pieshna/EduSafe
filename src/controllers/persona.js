@@ -13,17 +13,17 @@ export async function consultarPersonaById(props) {
   }
 }
 
-//creamos clase para buscar por roll
-export async function buscarPersonaPorRol(props) {
+//creamos clase para buscar por rol
+export async function buscarPersonaPorRol(rol) {
   const connection = await connect();
-  if (props === 0) {
+  if (rol === 0) {
     const [rows] = await connection.query(
         "SELECT * FROM usuarios WHERE estado=1 group by rol");
       return rows;
   }else{
       const [rows] = await connection.query(
     "SELECT * FROM usuarios WHERE rol=? AND estado=1",
-    [props]
+    [rol]
   );
   return rows;
   }
@@ -31,7 +31,7 @@ export async function buscarPersonaPorRol(props) {
 }
 
 //creamos clase para el ingreso de persona
-export async function crearPersona(req,res) {
+export async function crearPersona(req,res,rol) {
    //encriptamos password
    const saltos = await bcrypt.genSalt(10);
    const password = await bcrypt.hash(req.body.password, saltos);
@@ -67,7 +67,7 @@ export async function crearPersona(req,res) {
        password,
        req.body.foto,
        req.body.numero,
-       req.body.rol,
+       rol,
        req.body.estado,
      ]
    );
@@ -93,6 +93,7 @@ export async function actualizarEstado(req,res,props){
     }
 }
 
+//editamos persona
 export async function actualizarPersona(req,res){
     //encriptamos password
   const saltos = await bcrypt.genSalt(10);
@@ -115,4 +116,11 @@ export async function actualizarPersona(req,res){
     ]
   );
   res.json(result);
+}
+
+//contador de personas
+export async function contadorPersonas(rol){
+  const db = await connect();
+  const [rows] = await db.query("SELECT COUNT(id) as Actuales FROM usuarios WHERE rol=? AND estado=1",[rol]);
+    return rows;
 }
