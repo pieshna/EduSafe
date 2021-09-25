@@ -1,11 +1,12 @@
 import { Router } from "express";
-import { nuevaMateria,verMateria,eliminarMateria,editarMateria } from "../controllers/materias";
+import { nuevaMateria,verMateria,eliminarMateria,editarMateria,verMateriaPorId } from "../controllers/materias";
 
 const router = Router()
 
 router.post('/materia',nuevaMateria)
 router.get('/materia',verMateria)
-router.delete('/materia',eliminarMateria)
+router.get('/materia/:id',verMateriaPorId)
+router.delete('/materia/:id',eliminarMateria)
 router.put('/materia/:id',editarMateria)
 
 

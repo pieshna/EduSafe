@@ -7,6 +7,12 @@ export const nuevaMateria= async (req, res) => {
     res.json(result)
 }
 
+//mostramos materia por id
+export const verMateriaPorId = async (req, res) => {
+    const db = await connect();
+    const [rows] = await db.query("SELECT * FROM materia WHERE id=?",[req.params.id])
+    res.json(rows)
+}
 
 // mostramos materias
 export const verMateria= async (req, res) => {
