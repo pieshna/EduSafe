@@ -1,17 +1,20 @@
-import {Router} from 'express'
+import { Router } from "express";
+import {mostrarMaestros,maestrosActuales,ingresarMaestro,editarMaestro} from "../controllers/maestro"
+import {consultarById,eliminarUsuario} from "../controllers/usuario"
 
-const router=Router();
 
-router.get('/maestro')
+const router = Router();
 
-router.get('/maestro/count')
+router.get("/maestro",mostrarMaestros);
 
-router.get('/maestro/:id')
+router.get("/maestro/count",maestrosActuales);
 
-router.post('/maestro')
+router.get("/maestro/:id",consultarById);
 
-router.put('/maestro/:id')
+router.post("/maestro",ingresarMaestro);
 
-router.delete('/maestro/:id')
+router.put("/maestro/:id",editarMaestro);
 
-export default router
+router.delete("/maestro/:id",eliminarUsuario);
+
+export default router;
