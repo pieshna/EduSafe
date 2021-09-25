@@ -15,7 +15,7 @@ export const iniciarSesion = async (req, res) => {
   //validamos si es valida la password
   if (!comparePassword) {
     res.status(400).json({ error: "invalid password" });
-  } else {
+  } else if(rows[0].estado===1){
     const datos= {
       "nombre": rows[0].nombre,
       "apellido" : rows[0].apellido,
@@ -25,6 +25,8 @@ export const iniciarSesion = async (req, res) => {
     }
     //console.log(rows[0].password);
     res.json(datos);
+  }else{
+    res.status(401).json({"mensaje": "Usuario dado de alta en el sistema"})
   }
 };
 
