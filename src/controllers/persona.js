@@ -72,6 +72,7 @@ export async function crearPersona(req,res,rol) {
      ]
    );
    res.json({"Mensaje": `${req.body.nombre} ${req.body.apellido} ingresado exitosamente`})
+   return result
 }
 
 //Eliminacion de persona

@@ -5,6 +5,7 @@ import express from 'express';
 import maestroRoutes from './routes/maestro'
 import usuarioRoutes from './routes/usuario'
 import loginRoutes from './routes/login'
+import materiaRoutes from './routes/materia'
 
 const app= express();
 
@@ -14,5 +15,6 @@ app.use(express.json())
 app.use(maestroRoutes)
 app.use(usuarioRoutes)
 app.use(loginRoutes)
+app.use(materiaRoutes)
 
 export default app

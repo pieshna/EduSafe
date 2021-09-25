@@ -2,7 +2,10 @@ import {crearPersona,actualizarPersona,buscarPersonaPorRol,contadorPersonas} fro
 
 //Ingresamos maestro
 export const ingresarMaestro= async (req, res) => {
-    await crearPersona(req,res,2)
+    const [ResultSetHeader]=await crearPersona(req,res,2)
+    //obtenemos ID
+    const resultado=ResultSetHeader.insertId
+    console.log(resultado);
 }
 
 //Editamos maestro
