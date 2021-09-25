@@ -7,6 +7,7 @@ import usuarioRoutes from './routes/usuario'
 import loginRoutes from './routes/login'
 import materiaRoutes from './routes/materia'
 import gradoRoutes from './routes/grados'
+import alumnoRoutes from './routes/alumno'
 
 const app= express();
 
@@ -18,5 +19,7 @@ app.use(usuarioRoutes)
 app.use(loginRoutes)
 app.use(materiaRoutes)
 app.use(gradoRoutes)
+app.use(alumnoRoutes)
+
 
 export default app
