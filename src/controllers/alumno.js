@@ -1,5 +1,5 @@
 import {connect} from "../database";
-import {crearPersona,buscarPersonaPorRol,actualizarPersona,actualizarEstado} from "./persona"
+import {crearPersona,buscarPersonaPorRol,actualizarPersona,actualizarEstado,contadorPersonas} from "./persona"
 
 //creamor alumno
 export const nuevoAlumno = async (req, res) => {
@@ -26,4 +26,10 @@ export const editarAlumno = async (req, res) => {
 //eliminar Alumno
 export const eliminarAlumno = async (req, res) => {
     await actualizarEstado(req,res,0)
+}
+
+//Contador alumno
+export const contadorAlumno = async (req, res) => {
+    const resultado= await contadorPersonas(4)
+    res.json(resultado)
 }
