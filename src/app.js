@@ -8,8 +8,10 @@ import loginRoutes from './routes/login'
 import materiaRoutes from './routes/materia'
 import gradoRoutes from './routes/grados'
 import alumnoRoutes from './routes/alumno'
+import ComponentesRoutes from './routes/componenetes'
 
 const app= express();
+app.use(express.static(__dirname + '/public'))
 
 // Configurar cabeceras y cors
 app.use((req, res, next) => {
@@ -29,6 +31,8 @@ app.use(loginRoutes)
 app.use(materiaRoutes)
 app.use(gradoRoutes)
 app.use(alumnoRoutes)
+app.use(ComponentesRoutes)
+
 
 
 export default app
