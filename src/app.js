@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors'
 
 
 //importamos rutas
@@ -11,6 +12,14 @@ import alumnoRoutes from './routes/alumno'
 import ComponentesRoutes from './routes/componenetes'
 
 const app= express();
+
+/* Configuramos para aceptar peticiones */
+let CorsOption={
+    origin:'*',
+    optionSuccessStatus:200
+}
+//app.use(cors(CorsOption))
+
 app.use(express.static(__dirname + '/public'))
 
 // Configurar cabeceras y cors

@@ -45,7 +45,7 @@ export async function crearPersona(req,res,rol) {
    );
    //console.log(validarCorreo[0]);
    if (validarCorreo[0].length===1) {
-     return res.status(400).json(`el correo ${req.body.correo} ya existe`);
+     return res.status(422).json(`el correo ${req.body.correo} ya existe`);
    }
    
    const validarUsuario = await connection.query(
@@ -101,6 +101,26 @@ export async function actualizarPersona(req,res){
   const password = await bcrypt.hash(req.body.password, saltos);
 
   const connection = await connect();
+ 
+   //valiamos que el correo y el usuario sean unicos
+   const validarCorreo = await connection.query(
+     "SELECT * FROM usuarios where correo=? and id!=?",
+     [req.body.correo,req.params.id]
+   );
+   //console.log(validarCorreo[0]);
+   if (validarCorreo[0].length===1) {
+     return res.status(400).json(`el correo ${req.body.correo} ya existe`);
+   }
+   
+   const validarUsuario = await connection.query(
+     "SELECT * FROM usuarios WHERE usuario=? AND id!=?",
+     [req.body.usuario, req.params.id]
+   );
+   //console.log(validarUsuario[0]);
+   if (validarUsuario[0].length===1) {
+     return res.status(400).json(`el usuario ${req.body.usuario} ya existe`);
+   }
+
   const result = await connection.query(
     "UPDATE usuarios SET nombre=?, apellido=?, correo=?, usuario=?, password=?, foto=?, numero=?, rol=?, estado=? WHERE id=?",
     [
