@@ -13,6 +13,14 @@ export async function consultarPersonaById(props) {
   }
 }
 
+//Buscamos persona por username
+export async function consultarUsuario(props){
+  const db = await connect();
+  const usuario = await db.query("SELECT * FROM usuarios WHERE usuario=?", [props]);
+  return usuario;
+  
+}
+
 //creamos clase para buscar por rol
 export async function buscarPersonaPorRol(rol) {
   const connection = await connect();
@@ -31,7 +39,7 @@ export async function buscarPersonaPorRol(rol) {
 }
 
 //creamos clase para el ingreso de persona
-export async function crearPersona(req,res,rol) {
+export async function crearPersona(req,res) {
    //encriptamos password
    const saltos = await bcrypt.genSalt(10);
    const password = await bcrypt.hash(req.body.password, saltos);
@@ -67,11 +75,11 @@ export async function crearPersona(req,res,rol) {
        password,
        req.body.foto,
        req.body.numero,
-       rol,
+       req.body.rol,
        req.body.estado,
      ]
    );
-   res.json({"Mensaje": `${req.body.nombre} ${req.body.apellido} ingresado exitosamente`})
+   res.json({"Mensaje": `${req.body.nombre} ${req.body.apellido} ingresado exitosamente`,"id":result})
    return result
 }
 

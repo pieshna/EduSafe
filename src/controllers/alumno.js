@@ -3,7 +3,7 @@ import {crearPersona,buscarPersonaPorRol,actualizarPersona,actualizarEstado,cont
 
 //creamor alumno
 export const nuevoAlumno = async (req, res) => {
-    const [ResultSetHeader] = await crearPersona(req, res,4)
+    const [ResultSetHeader] = await crearPersona(req, res)
     //obtenemos Id
     const estudianteID=ResultSetHeader.insertId
     const db = await connect();
