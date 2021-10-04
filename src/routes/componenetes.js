@@ -1,5 +1,7 @@
 import upload from '../componentes/ManejoDeArchivos'
+import fs from 'fs'
 import {Router} from 'express'
+import path from 'path'
 
 const router = Router()
 
@@ -25,6 +27,12 @@ router.post('/upload/', upload.single('archivo',10), (req, res, next) => {
     }
       res.send(file)
    
+  })
+  const dirPath=path.join(__dirname, '..','/upload/')
+  router.get('/ver/:id', (req, res, next) => {
+  res.writeHead(200)
+  //console.log("envio");
+  fs.createReadStream(dirPath+req.params.id).pipe(res)
   })
 
 

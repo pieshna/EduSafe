@@ -10,6 +10,7 @@ import materiaRoutes from './routes/materia'
 import gradoRoutes from './routes/grados'
 import alumnoRoutes from './routes/alumno'
 import encargadoRoutes from './routes/encargado'
+import secretarioRoutes from './routes/secretario'
 import ComponentesRoutes from './routes/componenetes'
 
 const app= express();
@@ -42,6 +43,7 @@ app.use(materiaRoutes)
 app.use(gradoRoutes)
 app.use(alumnoRoutes)
 app.use(encargadoRoutes)
+app.use(secretarioRoutes)
 app.use(ComponentesRoutes)
 
 

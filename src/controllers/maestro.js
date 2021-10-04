@@ -15,12 +15,12 @@ export const editarMaestro= async (req, res) => {
 
 //mostramos todos los maestros
 export const mostrarMaestros= async (req, res) => {
-    const datos = await buscarPersonaPorRol(2)
+    const datos = await buscarPersonaPorRol(3)
     res.json(datos);
 }
 
 //contador de maestros
 export const maestrosActuales = async (req, res) => {
-    const datos=await contadorPersonas(2)
+    const datos=await contadorPersonas(3)
     res.json(datos)
 }
