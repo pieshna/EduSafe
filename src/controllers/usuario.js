@@ -23,7 +23,7 @@ export const consultarByRol = async (req, res) => {
 
 //Ingresar usuario
 export const ingresarUsuario = async (req, res) => {
-  await crearPersona(req,res,1)
+  await crearPersona(req,res)
 };
 
 //en ves de eliminar cambiamos el estado a inactivo

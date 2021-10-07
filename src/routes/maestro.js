@@ -7,7 +7,7 @@ const router = Router();
 
 router.get("/maestro",mostrarMaestros);
 
-router.get("/maestro/count",maestrosActuales);
+router.get("/maestro/contador",maestrosActuales);
 
 router.get("/maestro/:id",consultarById);
 
