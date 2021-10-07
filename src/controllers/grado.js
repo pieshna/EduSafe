@@ -3,7 +3,7 @@ import { connect} from "../database";
 //creamos grados
 export const nuevoGrado = async (req, res) => {
     const db = await connect();
-    const [rows] = await db.query("INSERT INTO grado (nombre, ciclo,estado) values (?,?,1)", [req.body.nombre,req.body.ciclo]);
+    const [rows] = await db.query("INSERT INTO grado (nombre, ciclo,carrera,estado) values (?,?,?,1)", [req.body.nombre,req.body.ciclo,req.body.carrera]);
     res.json(rows)
 }
 
@@ -18,6 +18,12 @@ export const verGrado = async (req, res) => {
 export const verGradoPorId = async (req, res) => {
     const db = await connect();
     const [rows] = await db.query("SELECT * FROM grado WHERE id=?",[req.params.id])
+    res.json(rows)
+}
+//mostramos grados por carrera
+export const verGradoPorCarrera = async (req, res) => {
+    const db = await connect();
+    const [rows] = await db.query("SELECT * FROM grado WHERE carrera=?",[req.params.id])
     res.json(rows)
 }
 
@@ -42,3 +48,17 @@ export const eliminarGrado = async (req, res) => {
     res.json(result)
 }
 
+//ver Carreras
+export const verCarreras = async (req, res) => {
+    const db = await connect();
+    const [rows] = await db.query("SELECT * FROM carrera")
+    res.json(rows)
+     
+}
+
+//consultar grado segun estudiante_id
+export const verGradoPorestudiante= async (req, res) => {
+    const db = await connect();
+    const [rows] = await db.query("SELECT * FROM estudiante WHERE usuario_id=?",[req.params.id])
+    res.json(rows)
+}

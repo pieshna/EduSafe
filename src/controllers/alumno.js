@@ -3,11 +3,12 @@ import {crearPersona,buscarPersonaPorRol,actualizarPersona,actualizarEstado,cont
 
 //creamor alumno
 export const nuevoAlumno = async (req, res) => {
-    const [ResultSetHeader] = await crearPersona(req, res)
+    /* const [ResultSetHeader] = await crearPersona(req, res)
     //obtenemos Id
-    const estudianteID=ResultSetHeader.insertId
+    const estudianteID=ResultSetHeader.insertId */
     const db = await connect();
-    await db.query("INSERT INTO estudiante (usuario_id, grado_id, carrera_id) values (?,?,?)",[estudianteID,req.body.grado_id,req.body.carrera_id])
+    const result = await db.query("INSERT INTO estudiante (usuario_id, grado_id, carrera_id) values (?,?,?)",[req.body.usuario_id,req.body.grado_id,req.body.carrera_id])
+    res.json(result)
 }
 
 //mostramos alumnos activos
@@ -18,7 +19,7 @@ export const mostrarAlumno = async (req, res) => {
 
 //editar alumnos
 export const editarAlumno = async (req, res) => {
-    await actualizarPersona(req,res);
+    //await actualizarPersona(req,res);
     const db = await connect();
     await db.query("UPDATE estudiante SET grado_id=?, carrera_id=? WHERE usuario_id=?",[req.body.grado_id,req.body.carrera_id,req.params.id])
 }
