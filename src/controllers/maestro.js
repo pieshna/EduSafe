@@ -1,11 +1,20 @@
 import {crearPersona,actualizarPersona,buscarPersonaPorRol,contadorPersonas} from './persona'
+import { connect} from "../database";
 
 //Ingresamos maestro
 export const ingresarMaestro= async (req, res) => {
-    const [ResultSetHeader]=await crearPersona(req,res)
-    //obtenemos ID
-    const resultado=ResultSetHeader.insertId
-    console.log(resultado);
+    const db = await connect();
+    const result = await db.query("Insert into maestro (fkUsuario,fkMateria,fkGrado) values (?,?,?)",[req.body.fkUsuario,req.body.fkMateria,req.body.fkGrado]);
+    res.json(result);
+     
+}
+
+//buscar maestro por materias
+export const buscarMaestroMateria = async (req, res) => {
+    const db = await connect();
+    const [rows] = await db.query("select usuarios.nombre, usuarios.apellido from usuarios inner join maestro on usuarios.id=maestro.fkUsuario and fkMateria=?", [req.params.id])
+    res.json(rows);
+    
 }
 
 //Editamos maestro

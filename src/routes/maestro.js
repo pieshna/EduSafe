@@ -1,5 +1,5 @@
 import { Router } from "express";
-import {mostrarMaestros,maestrosActuales,ingresarMaestro,editarMaestro} from "../controllers/maestro"
+import {mostrarMaestros,maestrosActuales,ingresarMaestro,editarMaestro,buscarMaestroMateria} from "../controllers/maestro"
 import {consultarById,eliminarUsuario} from "../controllers/usuario"
 
 
@@ -8,6 +8,7 @@ const router = Router();
 router.get("/maestro",mostrarMaestros);
 
 router.get("/maestro/contador",maestrosActuales);
+router.get("/maestro/materia/:id",buscarMaestroMateria);
 
 router.get("/maestro/:id",consultarById);
 
