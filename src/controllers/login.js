@@ -14,7 +14,7 @@ export const iniciarSesion = async (req, res) => {
   );
   //validamos si es valida la password
   if (!comparePassword) {
-    res.status(400).json({ error: "invalid password" });
+    res.status(201).json({ error: "invalid password" });
   } else if(rows[0].estado===1){
     const datos= {
       "nombre": rows[0].nombre,
@@ -22,11 +22,13 @@ export const iniciarSesion = async (req, res) => {
       "correo" : rows[0].correo,
       "username" : rows[0].username,
       "foto": rows[0].foto,
+      "rol":rows[0].rol,
+      "id": rows[0].id,
     }
     //console.log(rows[0].password);
     res.json(datos);
   }else{
-    res.status(401).json({"mensaje": "Usuario dado de alta en el sistema"})
+    res.status(201).json({"mensaje": "Usuario dado de alta en el sistema"})
   }
 };
 
