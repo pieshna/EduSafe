@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { nuevoGrado,verGrado,verGradoPorId,verGradoPorCiclo,editarGrado,eliminarGrado,verGradoPorCarrera,verCarreras,verGradoPorestudiante,verAlumnoPorGrado } from "../controllers/grado";
+import { nuevoGrado,verGrado,verGradoPorId,verGradoPorCiclo,editarGrado,eliminarGrado,verGradoPorCarrera,verCarreras,verGradoPorestudiante,contarAlumnoPorGrado } from "../controllers/grado";
 
 const router = Router()
 
@@ -12,6 +12,6 @@ router.put('/grado/:id',editarGrado)
 router.delete('/grado/:id',eliminarGrado)
 router.get('/grado/carrera/:id',verGradoPorCarrera)
 router.get('/grado/estudiante/:id',verGradoPorestudiante)
-router.get('/grado/contar/estudiante/:id',verAlumnoPorGrado)
+router.get('/grado/contar/estudiante/:id',contarAlumnoPorGrado)
 
 export default router

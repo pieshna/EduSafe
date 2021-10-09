@@ -34,3 +34,10 @@ export const contadorAlumno = async (req, res) => {
     const resultado= await contadorPersonas(4)
     res.json(resultado)
 }
+
+//Ver alumnos por grados 
+export const verAlumnoPorGrado = async (req, res) => {
+    const db = await connect();
+    const [rows] = await db.query("select usuarios.nombre,usuarios.apellido from usuarios inner join estudiante on usuarios.id=estudiante.usuario_id and estudiante.grado_id=?",[req.params.id])
+    res.json(rows)
+}

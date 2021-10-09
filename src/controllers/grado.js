@@ -65,7 +65,7 @@ export const verGradoPorestudiante= async (req, res) => {
 }
 
 //Contar alumnos por grados
-export const verAlumnoPorGrado= async (req, res) => {
+export const contarAlumnoPorGrado= async (req, res) => {
     const db = await connect();
     const [rows] = await db.query("select count(estudiante.id) as contador,grado_id,grado.id as idGrado, grado.nombre from estudiante inner join grado on grado_id=grado.id where carrera_id=? GROUP BY grado_id",[req.params.id])
     res.json(rows)

@@ -3,7 +3,7 @@ import {iniciarSesion} from '../controllers/login'
 
 const router = Router()
 
-router.get('/login',iniciarSesion)
+router.post('/login',iniciarSesion)
 
 
 export default router
