@@ -13,6 +13,7 @@ import encargadoRoutes from './routes/encargado'
 import secretarioRoutes from './routes/secretario'
 import carreraRoutes from './routes/carrera'
 import ComponentesRoutes from './routes/componenetes'
+import tareaRoutes from './routes/tarea'
 
 const app= express();
 
@@ -47,6 +48,7 @@ app.use(encargadoRoutes)
 app.use(secretarioRoutes)
 app.use(ComponentesRoutes)
 app.use(carreraRoutes)
+app.use(tareaRoutes)
 
 
 

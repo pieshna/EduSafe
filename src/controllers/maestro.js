@@ -12,7 +12,7 @@ export const ingresarMaestro= async (req, res) => {
 //buscar maestro por materias
 export const buscarMaestroMateria = async (req, res) => {
     const db = await connect();
-    const [rows] = await db.query("select maestro.id, usuarios.nombre, usuarios.apellido from usuarios inner join maestro on usuarios.id=maestro.fkUsuario and fkMateria=?", [req.params.id])
+    const [rows] = await db.query("select maestro.id, usuarios.nombre, usuarios.apellido from usuarios inner join maestro on usuarios.id=maestro.fkUsuario and fkMateria=? group by usuarios.id", [req.params.id])
     res.json(rows);
     
 }
