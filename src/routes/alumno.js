@@ -10,4 +10,5 @@ router.delete('/alumno/:id',eliminarAlumno)
 router.get('/alumno/contador',contadorAlumno)
 router.get('/alumno/grado/:id',verAlumnoPorGrado)
 
+
 export default router
