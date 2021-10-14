@@ -38,6 +38,6 @@ export const editarMateria= async (req, res) => {
 //ver materia por grados
 export const verMateriaPorGrados = async (req, res) => {
     const db = await connect();
-    const [rows] = await db.query("select materia.nombre,usuarios.nombre as docenteNombre, usuarios.apellido as docenteApellido from materia inner join maestro on maestro.fkMateria=materia.id inner join usuarios on usuarios.id=maestro.fkUsuario and maestro.fkGrado=?",[req.params.id])
+    const [rows] = await db.query("select materia.id, materia.nombre,usuarios.nombre as docenteNombre, usuarios.apellido as docenteApellido from materia inner join maestro on maestro.fkMateria=materia.id inner join usuarios on usuarios.id=maestro.fkUsuario and maestro.fkGrado=?",[req.params.id])
     res.json(rows)
 }
