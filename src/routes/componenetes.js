@@ -20,6 +20,7 @@ router.post('/upload/foto', upload.single('foto'), (req, res, next) => {
 
 router.post('/upload/', upload.single('archivo',10), (req, res, next) => {
     const file = req.file
+    console.log(file);
     if (!file) {
       const error = new Error('Please upload a file')
       error.httpStatusCode = 400

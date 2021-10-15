@@ -27,3 +27,32 @@ export const editamosTareaPorId = async (req, res) => {
     res.json(result);
     
 }
+
+//Ver Tareas enviadas por alumnos
+export const verTareasDeAlumnos = async (req, res) => {
+    const db = await connect();
+    const [rows] = await db.query("select tareaenvio.id as tareaId, usuarios.nombre, usuarios.apellido, tareaenvio.contenido,tareaenvio.comentario, tareaenvio.fechaEnvio from tareaenvio INNER JOIN estudiante on estudiante.id=tareaenvio.fkAlumno INNER JOIN usuarios on estudiante.usuario_id=usuarios.id and tareaenvio.fkTarea=?",[req.params.id])
+    res.json(rows)
+}
+
+//asignar punteo a la entrega de tarea
+export const asignarPunteo = async (req, res) => {
+    const db = await connect();
+    const result = await db.query("insert into nota (fkTarea,punteo,comentario) values (?,?,?)",[req.body.fkTarea,req.body.punteo,req.body.comentario])
+    res.json(result)
+}
+
+//mostramos punteos de todos los alumnos de la clase
+export const mostramosPunteosDeClase= async (req, res) => {
+    const db = await connect();
+    const [rows] = await db.query("select tareaenvio.fkAlumno, nota.punteo, tarea.id as tareaId from nota inner join tareaenvio on tareaenvio.id=nota.fkTarea inner join tarea on tarea.id=tareaenvio.fkTarea and tarea.fkMateria=? and tarea.fkGrado=?",[req.params.materia,req.params.grado])
+    res.json(rows)
+}
+
+//obtenemos el punteo de una tarea especifica por id
+export const verPunteoTarea= async (req, res) => {
+    const db = await connect();
+    console.log(req.params.id);
+    const [rows] = await db.query("select * from nota where fkTarea=?",[req.params.id])
+    res.json(rows)
+}
